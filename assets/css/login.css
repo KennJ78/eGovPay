@@ -1,0 +1,73 @@
+body {
+    background-color: #0d1b2a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Prevents collapsing */
+    text-align: center;
+    overflow: hidden; /* Prevents shifting */
+}
+
+.container {
+    position: relative; /* Ensures layout stability */
+    width: 100%;
+    max-width: 600px;
+}
+
+.form-container {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 20px; /* Added padding for better spacing */
+}
+
+.form-control {
+    background-color: #e0e1dd;
+    margin: 1rem 0; /* Adjusted to prevent excessive spacing */
+}
+
+.btn-custom {
+    background-color: #3b82f6;
+    color: white;
+    width: 100%; /* Makes it responsive */
+    height: 45px;
+    margin-top: 1rem;
+    font-size: 23px;
+}
+
+.btn-custom:hover {
+    background-color: #2563eb;
+}
+
+img {
+    width: 250px;
+}
+
+h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0.5rem;
+}
+
+/* Adjustments for small screens */
+@media (max-width: 576px) {
+    .container {
+        max-width: 90%; /* Ensures equal margins */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .form-container {
+        padding: 15px; /* Adds margin to make it look better */
+        margin-top: 2rem; /* Slightly more space */
+    }
+
+    img {
+        width: 200px; /* Reduce image size for smaller screens */
+    }
+
+    h3 {
+        font-size: 2.5rem; /* Adjust font size for readability */
+    }
+}
