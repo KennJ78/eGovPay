@@ -13,13 +13,13 @@
             padding: 20px;
         }
         .header {
-    background-color: #273755;
-    padding: 15px;
-    font-size: 40px;
-    font-weight: bold;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
+            background-color: #273755;
+            padding: 15px;
+            font-size: 40px;
+            font-weight: bold;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
         .table-container {
             max-width: 1500px;
             margin: auto;
@@ -55,20 +55,18 @@
         .btn-home:hover {
             background-color: #778da9;
         }
+
         @media (max-width: 576px) {
-    .table-container {
-        margin: 30px 15px; /* Medium margin on the sides */
-        padding: 15px;
-    }
+            .table-container {
+                margin: 30px 15px;
+                padding: 15px;
+            }
 
-    .header {
-        font-size: 30px; /* Smaller header for small screens */
-        padding: 10px;
-    }
-
-   
-}
-
+            .header {
+                font-size: 30px;
+                padding: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -76,22 +74,21 @@
     <div class="header">Transactions</div>
 
     <div class="table-container">
-        <table class="table table-border">
-            <thead>
-                <tr>
-                    <th>SERVICE ID</th>
-                    <th>SERVICE NAME</th>
-                    <th>AMOUNT</th>
-                    <th>PAYMENT METHOD</th>
-                </tr>
-            </thead>
-            <tbody id="transactionTable">
-                <!-- Sample Data -->
-                <tr>
-                    
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>SERVICE ID</th>
+                        <th>SERVICE NAME</th>
+                        <th>AMOUNT</th>
+                        <th>PAYMENT METHOD</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTable">
+                    <!-- Sample Data will be loaded by JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- Right-aligned button -->
@@ -106,7 +103,7 @@
             let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
             const tableBody = document.getElementById("transactionTable");
             tableBody.innerHTML = ""; // Clear existing rows
-    
+
             transactions.forEach(transaction => {
                 let row = `
                     <tr>
@@ -119,11 +116,10 @@
                 tableBody.innerHTML += row;
             });
         }
-    
+
         // Load transactions on page load
         document.addEventListener("DOMContentLoaded", loadTransactions);
     </script>
-    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

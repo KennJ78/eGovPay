@@ -1,157 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="./assets/css/Pay.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payment</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"/>
+  <link rel="stylesheet" href="./assets/css/Pay.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <div class="header">Government Service Payment</div>
+  <div class="header">Government Service Payment</div>
 
-    <form id="payment-form" class="form-container">
-        <div class="row">
-            <div class="col-md-6 form-group">
-                <label><i class="bi bi-person-fill"></i> Name</label>
-                <input type="text" name="name" class="form-control" required>
-            </div>
-            <div class="col-md-6 form-group">
-                <label><i class="bi bi-telephone-fill"></i> Contact Number</label>
-                <input type="text" name="contact" class="form-control" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label><i class="bi bi-geo-alt-fill"></i> Location</label>
-            <input type="text" name="location" class="form-control" required>
-        </div>
+  <form id="payment-form" class="form-container">
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label><i class="bi bi-person-fill"></i> Name</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+      <div class="col-md-6 form-group">
+        <label><i class="bi bi-telephone-fill"></i> Contact Number</label>
+        <input type="text" name="contact" class="form-control" required>
+      </div>
+    </div>
 
-        <div class="form-group">
-            <label><i class="bi bi-diagram-3-fill"></i> Select Government Service</label>
-            <select name="service" class="form-select" required>
-                <option value="" selected disabled> Select Service </option>
-                <optgroup label="Business-Related Fees">
-                    <option value="business_permit">Business Permit & Renewal Fees</option>
-                    <option value="mayors_permit">Mayor’s Permit</option>
-                    <option value="sanitary_permit">Sanitary Permit</option>
-                    <option value="fire_safety">Fire Safety Inspection Fee</option>
-                </optgroup>
-                <optgroup label="Property & Real Estate Fees">
-                    <option value="real_property_tax">Real Property Tax</option>
-                    <option value="transfer_tax">Transfer Tax</option>
-                    <option value="building_permit">Building Permit</option>
-                    <option value="occupancy_permit">Occupancy Permit</option>
-                </optgroup>
-                <optgroup label="Vehicle-Related Fees">
-                    <option value="traffic_fines">Traffic Violation Fines</option>
-                </optgroup>
-            </select>
-        </div>
+    <div class="form-group">
+      <label><i class="bi bi-geo-alt-fill"></i> Location</label>
+      <input type="text" name="location" class="form-control" required>
+    </div>
 
-        <div class="form-group">
-            <label><i class="bi bi-credit-card-fill"></i> Payment Method</label>
-            <select id="payment-method" name="paymentMethod" class="form-select" required>
-                <option value="" selected disabled> Select Payment Method </option>
-                <option value="gcash">Gcash</option>
-                <option value="card">Card</option>
-                <option value="paymaya">PayMaya</option>
-            </select>
-        </div>
+    <div class="form-group">
+      <label><i class="bi bi-diagram-3-fill"></i> Select Government Service</label>
+      <select name="service" class="form-select" required>
+        <option value="" selected disabled> Select Service </option>
+        <optgroup label="Business-Related Fees">
+          <option value="business_permit">Business Permit & Renewal Fees</option>
+          <option value="mayors_permit">Mayor’s Permit</option>
+          <option value="sanitary_permit">Sanitary Permit</option>
+          <option value="fire_safety">Fire Safety Inspection Fee</option>
+        </optgroup>
+        <optgroup label="Property & Real Estate Fees">
+          <option value="real_property_tax">Real Property Tax</option>
+          <option value="transfer_tax">Transfer Tax</option>
+          <option value="building_permit">Building Permit</option>
+          <option value="occupancy_permit">Occupancy Permit</option>
+        </optgroup>
+        <optgroup label="Vehicle-Related Fees">
+          <option value="traffic_fines">Traffic Violation Fines</option>
+        </optgroup>
+      </select>
+    </div>
 
-        <div id="gcash-requirements" class="d-none">
-            <label><i class="bi bi-phone-fill"></i> GCash Mobile Number</label>
-            <input type="text" name="gcashNumber" class="form-control">
-            <label><i class="bi bi-cash-stack"></i> Amount</label>
-            <input type="text" name="gcashAmount" class="form-control">
-        </div>
+    <div class="form-group">
+      <label><i class="bi bi-credit-card-fill"></i> Payment Method</label>
+      <select id="payment-method" name="paymentMethod" class="form-select" required>
+        <option value="" selected disabled> Select Payment Method </option>
+        <option value="gcash">Gcash</option>
+        <option value="card">Card</option>
+        <option value="paymaya">PayMaya</option>
+      </select>
+    </div>
 
-        <div id="card-requirements" class="d-none">
-            <label><i class="bi bi-credit-card-fill"></i> Card Number</label>
-            <input type="text" name="cardNumber" class="form-control">
-            <label><i class="bi bi-calendar-event-fill"></i> Expiry Date</label>
-            <input type="text" name="cardExpiry" class="form-control">
-            <label><i class="bi bi-shield-lock-fill"></i> CVV</label>
-            <input type="text" name="cardCVV" class="form-control">
-            <label><i class="bi bi-cash-stack"></i> Amount</label>
-            <input type="text" name="cardAmount" class="form-control">
-        </div>
+    <div id="gcash-requirements" class="d-none">
+      <label><i class="bi bi-phone-fill"></i> GCash Mobile Number</label>
+      <input type="text" name="gcashNumber" class="form-control">
+      <label><i class="bi bi-cash-stack"></i> Amount</label>
+      <input type="number" name="gcashAmount" class="form-control">
+    </div>
 
-        <div id="paymaya-requirements" class="d-none">
-            <label><i class="bi bi-phone-fill"></i> PayMaya Mobile Number</label>
-            <input type="text" name="paymayaNumber" class="form-control">
-            <label><i class="bi bi-cash-stack"></i> Amount</label>
-            <input type="text" name="paymayaAmount" class="form-control">
-        </div>
+    <div id="card-requirements" class="d-none">
+      <label><i class="bi bi-credit-card-fill"></i> Card Number</label>
+      <input type="text" name="cardNumber" class="form-control">
+      <label><i class="bi bi-calendar-event-fill"></i> Expiry Date (MM/YY)</label>
+      <input type="text" name="cardExpiry" class="form-control" placeholder="MM/YY">
+      <label><i class="bi bi-shield-lock-fill"></i> CVV</label>
+      <input type="text" name="cardCVV" class="form-control" placeholder="3 digits">
+      <label><i class="bi bi-cash-stack"></i> Amount</label>
+      <input type="number" name="cardAmount" class="form-control">
+    </div>
 
-        <div class="btn-container">
-            <button type="button" class="btn btn-custom" onclick="window.location.href='Dashboard.html'">Back</button>
-            <button type="submit" id="confirm-btn" class="btn btn-primary">Confirm</button>
-        </div>
-    </form>
+    <div id="paymaya-requirements" class="d-none">
+      <label><i class="bi bi-phone-fill"></i> PayMaya Mobile Number</label>
+      <input type="text" name="paymayaNumber" class="form-control">
+      <label><i class="bi bi-cash-stack"></i> Amount</label>
+      <input type="number" name="paymayaAmount" class="form-control">
+    </div>
 
-    <script>
-        document.getElementById('payment-method').addEventListener('change', function() {
-            document.getElementById('gcash-requirements').classList.add('d-none');
-            document.getElementById('card-requirements').classList.add('d-none');
-            document.getElementById('paymaya-requirements').classList.add('d-none');
-    
-            if (this.value === 'gcash') {
-                document.getElementById('gcash-requirements').classList.remove('d-none');
-            } else if (this.value === 'card') {
-                document.getElementById('card-requirements').classList.remove('d-none');
-            } else if (this.value === 'paymaya') {
-                document.getElementById('paymaya-requirements').classList.remove('d-none');
+    <div class="btn-container">
+      <button type="button" class="btn btn-custom" onclick="window.location.href='Dashboard.html'">Back</button>
+      <button type="submit" id="confirm-btn" class="btn btn-primary">Confirm</button>
+    </div>
+  </form>
+
+  <script>
+    document.getElementById('payment-method').addEventListener('change', function () {
+        document.getElementById('gcash-requirements').classList.add('d-none');
+        document.getElementById('card-requirements').classList.add('d-none');
+        document.getElementById('paymaya-requirements').classList.add('d-none');
+
+        if (this.value === 'gcash') {
+            document.getElementById('gcash-requirements').classList.remove('d-none');
+        } else if (this.value === 'card') {
+            document.getElementById('card-requirements').classList.remove('d-none');
+        } else if (this.value === 'paymaya') {
+            document.getElementById('paymaya-requirements').classList.remove('d-none');
+        }
+    });
+
+    function isValidExpiryDate(expiry) {
+        const regex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+        if (!regex.test(expiry)) return false;
+
+        const [month, year] = expiry.split('/').map(Number);
+        const now = new Date();
+        const currentYear = parseInt(now.getFullYear().toString().slice(-2));
+        const currentMonth = now.getMonth() + 1;
+
+        return year > currentYear || (year === currentYear && month >= currentMonth);
+    }
+
+    function isValidCVV(cvv) {
+        return /^\d{3}$/.test(cvv);
+    }
+
+    function isValidMobileNumber(number) {
+        return /^09\d{9}$/.test(number);
+    }
+
+    document.getElementById("payment-form").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const paymentMethod = document.querySelector('[name="paymentMethod"]').value;
+
+        // CARD VALIDATION
+        if (paymentMethod === "card") {
+            const expiry = document.querySelector('[name="cardExpiry"]').value.trim();
+            const cvv = document.querySelector('[name="cardCVV"]').value.trim();
+
+            if (!isValidExpiryDate(expiry)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Expiry Date",
+                    text: "Please enter a valid expiry date in MM/YY format and ensure it is not expired."
+                });
+                return;
             }
-        });
-    
-        document.getElementById("payment-form").addEventListener("submit", function(e) {
-            e.preventDefault(); // Prevent page reload
-    
-            // Get form data
-            const name = document.querySelector('[name="name"]').value;
-            const service = document.querySelector('[name="service"]').value;
-            const paymentMethod = document.querySelector('[name="paymentMethod"]').value;
-            let amount = "";
-    
-            if (paymentMethod === "gcash") {
-                amount = document.querySelector('[name="gcashAmount"]').value;
-            } else if (paymentMethod === "card") {
-                amount = document.querySelector('[name="cardAmount"]').value;
-            } else if (paymentMethod === "paymaya") {
-                amount = document.querySelector('[name="paymayaAmount"]').value;
-            }
-    
-            // Generate a random service ID
-            const serviceId = Math.random().toString(36).substr(2, 8).toUpperCase();
-    
-            // Create transaction object
-            const transaction = {
-                id: serviceId,
-                service: service,
-                amount: amount,
-                paymentMethod: paymentMethod
-            };
-    
-            // Save to localStorage
-            let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
-            transactions.push(transaction);
-            localStorage.setItem("transactions", JSON.stringify(transactions));
-    
-            // Show success alert
-            Swal.fire({
-                icon: "success",
-                title: "Payment Successful",
-                text: "Your payment has been processed successfully!",
-                confirmButtonText: "OK"
-            }).then(() => {
-                window.location.href = 'Dashboard.html'; // Redirect to dashboard
-            });
-        });
-    </script>
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+            if (!isValidCVV(cvv)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid CVV",
+                    text: "CVV must be exactly 3 digits."
+                });
+                return;
+            }
+        }
+
+        // GCASH VALIDATION
+        if (paymentMethod === "gcash") {
+            const gcashNumber = document.querySelector('[name="gcashNumber"]').value.trim();
+            const gcashAmount = document.querySelector('[name="gcashAmount"]').value.trim();
+
+            if (!isValidMobileNumber(gcashNumber)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid GCash Number",
+                    text: "Please enter a valid 11-digit number starting with 09."
+                });
+                return;
+            }
+
+            if (!gcashAmount || parseFloat(gcashAmount) <= 0) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Amount",
+                    text: "Please enter a valid amount greater than 0 for GCash payment."
+                });
+                return;
+            }
+        }
+
+        // PAYMAYA VALIDATION
+        if (paymentMethod === "paymaya") {
+            const paymayaNumber = document.querySelector('[name="paymayaNumber"]').value.trim();
+            const paymayaAmount = document.querySelector('[name="paymayaAmount"]').value.trim();
+
+            if (!isValidMobileNumber(paymayaNumber)) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid PayMaya Number",
+                    text: "Please enter a valid 11-digit number starting with 09."
+                });
+                return;
+            }
+
+            if (!paymayaAmount || parseFloat(paymayaAmount) <= 0) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Invalid Amount",
+                    text: "Please enter a valid amount greater than 0 for PayMaya payment."
+                });
+                return;
+            }
+        }
+
+        // Transaction Recording
+        const name = document.querySelector('[name="name"]').value;
+        const service = document.querySelector('[name="service"]').value;
+        let amount = "";
+
+        if (paymentMethod === "gcash") {
+            amount = document.querySelector('[name="gcashAmount"]').value;
+        } else if (paymentMethod === "card") {
+            amount = document.querySelector('[name="cardAmount"]').value;
+        } else if (paymentMethod === "paymaya") {
+            amount = document.querySelector('[name="paymayaAmount"]').value;
+        }
+
+        const serviceId = Math.random().toString(36).substr(2, 8).toUpperCase();
+
+        const transaction = {
+            id: serviceId,
+            service: service,
+            amount: amount,
+            paymentMethod: paymentMethod
+        };
+
+        let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+        transactions.push(transaction);
+        localStorage.setItem("transactions", JSON.stringify(transactions));
+
+        Swal.fire({
+            icon: "success",
+            title: "Payment Successful",
+            text: "Your payment has been processed successfully!",
+            confirmButtonText: "OK"
+        }).then(() => {
+            window.location.href = 'Dashboard.html';
+        });
+    });
+</script>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
